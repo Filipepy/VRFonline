@@ -50,7 +50,7 @@ def criarconta():
     form_criarconta = FormCriarConta()
     usuarios_cadastrados = Usuario.query.all()
     if form_criarconta.validate_on_submit() and 'botao_submit_criarconta' in request.form:
-        senha_cript = bcrypt.generate_password_hash(form_criarconta.senha.data)
+        senha_cript = bcrypt.generate_password_hash(form_criarconta.senha.data).decode("utf-8")
         usuario = Usuario(username=form_criarconta.username.data, email=form_criarconta.email.data, senha=senha_cript,createdate=datetime.now())
         database.session.add(usuario)
         database.session.commit()
