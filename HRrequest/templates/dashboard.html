@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+
+{% block body%}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col dash p-5 me-5" style="width: 300px;">
+             <h4> Total Solicitações </h4>
+              <p>10</p>
+        </div>
+              <div class="col dash p-5 me-5" style="width: 300px;">
+                <h4> Férias em Dobro </h4>
+                <p>10</p>
+              </div>
+                    <div class="dash p-5 col " style="width: 200px;">
+                    <h4> Total Solicitações </h4>
+                    <p>10</p>
+                    </div>
+    </div>
+</div>
+
+
+    <div class="row" style="margin-left:348px;">
+        <div class="col-md-4 mt-5" style="width: 1000px;">
+          <canvas class="dash p-2" id="myChart"></canvas>
+        </div>
+
+        <div class="col-md-4 mt-5" style="width: 1000px;">
+          <canvas class="dash p-2" id="lineChart"></canvas>
+        </div>
+    </div>
+
+
+<script>
+  const ctx = document.getElementById('myChart');
+
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['Jan', 'Feb', 'Mar', 'Abr', 'Mai', 'Jun'],
+      datasets: [{
+        label: '# Quant Férias por Mês',
+        data: [36, 60, 70, 80, 90, 60],
+    borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+
+  const ctx2 = document.getElementById('lineChart');
+
+  new Chart(ctx2, {
+    type: 'line',
+    data: {
+      labels: ['Jan', 'Feb', 'Mar', 'Abr', 'Mai', 'Jun'],
+      datasets: [{
+        label: '# Quant Férias por Mês',
+        data: [36, 60, 70, 80, 90, 60],
+    borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+
+
+</script>
+
+
+
+
+
+
+{% endblock body%}

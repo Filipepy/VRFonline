@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block body%}
+   <div class="container mt-5">
+        <!-- Seção de Boas-Vindas -->
+        <div class="">
+            <h1>Bem-vindo(a) ao Controle de Férias!</h1>
+            <p>Estamos aqui para te ajudar a gerenciar no processo de férias de forma simples e eficiente. Explore as opções ao lado para solicitar novas férias, revisar solicitações ou consultar informações sobre saldo de férias de um colaborador.</p>
+        </div>
+
+        <div class="row mt-5">
+            <div class="col-md-4">
+                <div class="card dashboard-card ">
+                    <div class="card-body home-primary rounded">
+                        <h4>Solicitações Pendentes</h4>
+                        <p>Você tem 5 solicitações de férias pendentes para revisão.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card dashboard-card">
+                    <div class="card-body home-success rounded">
+                        <h4>Férias Aprovadas</h4>
+                        <p>Você tem 10 férias aprovadas para o mês atual.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card dashboard-card">
+                    <div class="card-body home-Warning rounded">
+                        <h4>Novas Solicitações</h4>
+                        <p>Há 3 novas solicitações de férias aguardando sua atenção.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-5">
+            <h4>Últimas Atividades</h4>
+            <ul class="list-group">
+                <li class="list-group-item">Solicitação de férias por João Silva - Aprovada</li>
+                <li class="list-group-item">Solicitação de férias por Maria Oliveira - Rejeitada</li>
+                <li class="list-group-item">Nova solicitação de férias por Carlos Souza</li>
+            </ul>
+        </div>
+    </div>
+
+{% endblock %}

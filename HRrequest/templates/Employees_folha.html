@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block body%}
+
+      <div class="table-vac">
+      <h1> Colaboradores cadastrados </h1>
+      </div>
+        <div class="container mt-4">
+            <form action="{{ url_for('upload_file') }}" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="file">Escolha o arquivo Excel:</label>
+                    <input type="file" class="form-control" id="file" name="file" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Enviar</button>
+            </form>
+        </div>
+
+      <table class= "table-vac">
+        <thead class= "table-vac">
+
+          <tr>
+            <th>ID_employee</th>
+            <th style="width: 170px;">Nome</th>
+            <th>Função</th>
+            <th style="width: 170px;">Centro de Custo</th>
+            <th>Data limite</th>
+            <th style="width: 170px;">Periodo aquisitivo</th>
+            <th>Qtd de Dias_Saldo</th>
+            <th>Data do Upload</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in items %}
+          <tr>
+            <th>{{item.id_employee}}</th>
+            <td style="width: 160px;">{{item.name}}</td>
+            <td>{{item.position}}</td>
+            <td style="width: 170px;">{{item.costcenter}}</td>
+            <td>{{item.limitedate}}</td>
+            <td style="width: 170px;">{{item.acperiod}}</td>
+            <td>{{item.balance}}</td>
+            <td>{{item.createdate.strftime('%d/%m/%Y %H:%M:%S')}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+        <!-- Paginação -->
+      <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center mt-2">
+                {% if page > 0 %}
+                <li class="page-item">
+                    <a class="page-link" href="{{ url_for('employees_folha', page=page-1) }}" tabindex="-1" aria-disabled="true">Previous </a>
+                </li>
+                {% endif %}
+                    <li class="page-item"><a class="page-link" href="{{ url_for('employees_folha', page=page) }}">{{page}}</a></li>
+                    <li class="page-item"><a class="page-link" href="{{ url_for('employees_folha', page=page+1) }}">{{page+1}}</a></li>
+                    <li class="page-item"><a class="page-link" href="{{ url_for('employees_folha', page=page+2) }}">{{page+2}}</a></li>
+                    <li class="page-item">
+                {% if page < total_pages %}
+                <li class="page-item">
+                    <a class="page-link" href="{{ url_for('employees_folha', page=page+1) }}"> Next </a>
+                    </a>
+                </li>
+                {% endif %}
+            </ul>
+      </nav>
+{% endblock %}

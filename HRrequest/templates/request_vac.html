@@ -1,0 +1,188 @@
+{% extends 'base.html' %}
+
+{% block body%}
+<div class="container rounded contact-form p-5 mb-3">
+
+    <form action="#" method="post">
+        <div class="container">
+            <h3>Formulário de solicitação de férias</h3>
+        </div>
+
+        <div class="row g-3">
+            <div class="col-md-2">
+                <label for="ID" class="col-form-label">ID:</label>
+                <input type="text" name="txtID" class="form-control" value="{{ id_employee }}">
+            </div>
+
+            <div class="col-md-5">
+                <label for="name" class="col-form-label">Nome:</label>
+                <input type="text" name="txtName" class="form-control" value="{{ nome }}">
+            </div>
+
+            <div class="col-md-5">
+                <label for="funcao" class="col-form-label">Função:</label>
+                <input type="text" name="txtFuncao" class="form-control" value="{{ funcao }}">
+            </div>
+
+            <div class="col-md-5">
+                <label for="CentrodeCusto" class="col-form-label">Centro de Custo:</label>
+                <input type="text" name="txtCentrodeCusto" class="form-control" value="{{ Centrodecusto }}">
+            </div>
+
+            <div class="col-md-4">
+                <label for="Periodoaquisitivo" class="col-form-label">Período aquisitivo:</label>
+                <input type="text" name="txtPeriodoaquisitivo" class="form-control" value="{{ Centrodecusto }}">
+            </div>
+
+            <div class="col-md-3">
+                <label for="Data limite" class="col-form-label">Data limite:</label>
+                <input type="text" name="txtDatalimite" class="form-control" value="{{ Datalimite }}">
+            </div>
+
+            <div class="col-md-3">
+                <label for="abono" class="col-form-label">Quantidade de abono:</label>
+                <input type="text" name="txtQtdabono" class="form-control" value="{{ abono }}">
+            </div>
+
+            <div class="col-md-5">
+                <label for="13salario" class="col-form-label">Deseja antecipar a 1ª Parcela do 13º?</label>
+                <select name="txtdecimoterceiro" class="form-control custom-select mt-1" value="{{ decimoterceiro }}">
+                    <option selected>Selecione sim ou Não</option>
+                    <option value="Sim">Sim</option>
+                    <option value="Não">Não</option>
+                </select>
+            </div>
+
+            <div class="col-md-3">
+                <label for="Dataembarque" class="col-form-label">Data Embarque:</label>
+                <input type="date" name="txtDataemb" class="form-control" value="{{ dataemb }}">
+            </div>
+
+            <div class="col-md-12">
+                <select name="txttipocobertura" class="form-control custom-select mt-1" value="{{ cobertura }}">
+                    <option selected>Tipo de Cobertura</option>
+                    <option value="Feris na folga">Férias na folga</option>
+                    <option value="Cobertura interna">Cobertura interna</option>
+                    <option value="cobertura pool">Cobertura pool</option>
+                </select>
+            </div>
+
+            <div class="col-md-3">
+                <label for="Datainicio" class="col-form-label">Data início:</label>
+                <input type="date" name="txtDatainicio" class="form-control" value="{{ datainicio }}">
+            </div>
+
+            <div class="col-md-3">
+                <label for="Data fim" class="col-form-label">Data fim:</label>
+                <input type="date" name="txtDatafim" class="form-control" value="{{ datafim }}">
+            </div>
+
+            <div class="col-md-2">
+                <label for="Qtd Dias" class="col-form-label">Qtd Dias:</label>
+                <input type="int" name="txtQuantDias" class="form-control" value="{{ qtddias }}">
+            </div>
+
+            <div class="col-md-4">
+                <label for="Data retorno" class="col-form-label">Data de Retorno:</label>
+                <input type="text" name="txtDataretorno" class="form-control" value="{{ dataretorno }}">
+            </div>
+
+            <div class="col-md-6">
+                <label for="NomeCobertura" class="col-form-label">Nome Cobertura:</label>
+                <input type="text" name="txtNomeCobertura" class="form-control" value="{{ nomecobertura }}">
+            </div>
+
+            <div class="col-md-6">
+                <label for="FuncaoCobertura" class="col-form-label">Função Cobertura:</label>
+                <input type="text" name="txtFuncaoCobertura" class="form-control" value="{{ funcaocobertura }}">
+            </div>
+
+            <div class="col-md-12 text-right mt-5 mb-0">
+                <input type="submit" name="btnSubmit" class="btnContact" value="Enviar">
+            </div>
+        </div>
+    </form>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Seleciona os campos de data de início e fim
+        var dataInicioInput = document.querySelector('input[name="txtDatainicio"]');
+        var dataFimInput = document.querySelector('input[name="txtDatafim"]');
+        var quantidadeDiasInput = document.querySelector('input[name="txtQuantDias"]');
+        var dataRetornoInput = document.querySelector('input[name="txtDataretorno"]')
+
+        // Adiciona um listener para calcular os dias quando as datas mudarem
+        dataFimInput.addEventListener('change', calcularQuantidadeDias);
+
+        function calcularQuantidadeDias() {
+            var dataInicio = new Date(dataInicioInput.value);
+            var dataFim = new Date(dataFimInput.value);
+
+            // Calcula a diferença em milissegundos entre as datas
+            var diferenca = dataFim.getTime() - dataInicio.getTime();
+
+            // Converte a diferença de milissegundos para dias
+            var dias = diferenca / (1000 * 3600 * 24)+1;
+
+            // Atualiza o campo de quantidade de dias
+            quantidadeDiasInput.value = Math.ceil(dias); // Arredonda para cima, se necessário
+
+             // Calcula a data de retorno
+            var dataRetorno = new Date(dataFim.getTime() + 2 * 24 * 60 * 60 * 1000);
+            var dia = ("0" + dataRetorno.getDate()).slice(-2);
+            var mes = ("0" + (dataRetorno.getMonth() + 1)).slice(-2);
+            var ano = dataRetorno.getFullYear();
+            var dataFormatada = ano + "-" + mes + "-" + dia;
+
+            // Atualiza o campo de data de retorno
+            dataRetornoInput.value = dataFormatada;
+
+        }
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+        $('input[name="txtID"]').on('change', function() {
+            var idFuncionario = $(this).val();
+
+            if (idFuncionario) {
+                $.ajax({
+                    url: '/buscar-funcionario',
+                    data: {
+                        'id': idFuncionario
+                    },
+                    success: function(data) {
+                        if (data.error) {
+                            alert(data.error);
+                        } else {
+                            $('input[name="txtName"]').val(data.nome);
+                            $('input[name="txtFuncao"]').val(data.funcao);
+                            $('input[name="txtCentrodeCusto"]').val(data.centrodecusto);
+                            $('input[name="txtPeriodoaquisitivo"]').val(data.periodoaquisitivo);
+                            $('input[name="txtDatalimite"]').val(data.datalimite);
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        alert('Ocorreu um erro ao buscar os dados.');
+                    }
+                });
+            }
+        });
+    });
+
+    function converterParaYYYYMMDD(dataDDMMYYYY) {
+        var partes = dataDDMMYYYY.split('/');
+        if (partes.length === 3) {
+            var dia = partes[0];
+            var mes = partes[1];
+            var ano = partes[2];
+            return `${ano}-${mes}-${dia}`;
+        }
+        return dataDDMMYYYY; // Retorna o valor original se o formato estiver incorreto
+    }
+</script>
+
+{% endblock %}
+

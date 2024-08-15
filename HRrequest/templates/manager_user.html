@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+
+{% block body%}
+<div class=" container rounded contact-form border mt-3">
+
+    <div class="row">
+        <div class="col">
+        <form method="POST" action="">
+            {{ form_criarconta.csrf_token }}
+            <legend>Criar Conta</legend>
+                    <fieldset>
+                      <div Class="rounded contact-form">
+                        {{ form_criarconta.username.label(class="form-control-label") }}
+                          {% if form_criarconta.username.errors %}
+                             {{ form_criarconta.username(class="form-control is-invalid")  }}
+                          <div class="invalid-feedback">
+                                {%for erro in form_criarconta.username.errors %}
+                                    {{ erro }}
+                                {% endfor %}
+                          </div>
+                          {% else %}
+                            {{ form_criarconta.username(class="form-control")  }}
+                          {% endif %}
+                      </div>
+                      <div Class="rounded contact-form">
+                        {{ form_criarconta.email.label(class="form-control-label") }}
+                          {% if form_criarconta.email.errors %}
+                             {{ form_criarconta.email(class="form-control is-invalid")  }}
+                          <div class="invalid-feedback">
+                                {%for erro in form_criarconta.email.errors %}
+                                    {{ erro }}
+                                {% endfor %}
+                          </div>
+                          {% else %}
+                            {{ form_criarconta.email(class="form-control")  }}
+                          {% endif %}
+                      </div>
+                       <div Class="rounded contact-form">
+                        {{ form_criarconta.senha.label(class="form-control-label") }}
+                          {% if form_criarconta.senha.errors %}
+                             {{ form_criarconta.senha(class="form-control is-invalid")  }}
+                          <div class="invalid-feedback">
+                                {%for erro in form_criarconta.senha.errors %}
+                                    {{ erro }}
+                                {% endfor %}
+                          </div>
+                          {% else %}
+                            {{ form_criarconta.senha(class="form-control")  }}
+                          {% endif %}
+                      </div>
+                      <div Class="rounded contact-form">
+                        {{ form_criarconta.confirmacao.label(class="form-control-label") }}
+                          {% if form_criarconta.confirmacao.errors %}
+                             {{ form_criarconta.confirmacao(class="form-control is-invalid")  }}
+                          <div class="invalid-feedback">
+                                {%for erro in form_criarconta.confirmacao.errors %}
+                                    {{ erro }}
+                                {% endfor %}
+                          </div>
+                          {% else %}
+                            {{ form_criarconta.confirmacao(class="form-control")  }}
+                          {% endif %}
+                      </div>
+                    </fieldset>
+                        {{ form_criarconta.botao_submit_criarconta(class="btn btn-primary mt-2") }}
+            </form>
+        </div>
+                    <div class="col">
+                              <table class= "table-vac" style="margin-top: 65px;" >
+                                  <tr>
+                                    <th>Usuario</th>
+                                    <th style="width: 160px;">Email</th>
+                                    <th>Perfil</th>
+                                    <th>Data de criação</th>
+                                    <th>Action</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  {% for usuario in usuarios_cadastrados %}
+                                  <tr>
+                                    <th>{{usuario.username}}</th>
+                                    <td style="width: 160px;">{{usuario.email}}</td>
+                                    <td>{{usuario.perfil}}</td>
+                                    <td>{{usuario.createdate.strftime('%d/%m/%Y %H:%M:%S')}}</td>
+                                    <td><a href="#" class="text-danger" data-bs-toggle="modal" data-bs-target="#"> Editar</a></td>
+                                  {% endfor %}
+                                  </tr>
+                                </tbody>
+                              </table>
+                    </div>
+    </div>
+</div>
+{% endblock %}
+

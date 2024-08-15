@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+
+{% block body%}
+
+      <div class="table-vac mb-2">
+      <h1> Férias solicitadas </h1>
+      </div>
+
+      <div class="download float-end" style="margin-right: 92px;">
+      <a href="{{ url_for('export_excel') }}" class="btn btn-primary">Exportar para Excel</a>
+      </div>
+
+      <table class= "table-vac" style="margin-top: 65px;" >
+        <thead class= "table-vac">
+          <tr>
+            <th>Nº Requisição</th>
+            <th style="width: 160px;">Nome</th>
+            <th>Função</th>
+            <th>Centro de Custo</th>
+            <th>Data inicio</th>
+            <th>Data Fim</th>
+            <th>Qtd Dias</th>
+            <th>Qtd Abono</th>
+            <th>Ant 13º Salario?</th>
+            <th>Solicitado Por</th>
+            <th>Data solicitação</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for requisition in requisitions %}
+          <tr>
+            <th>{{requisition.id}}</th>
+            <td style="width: 160px;">{{requisition.name}}</td>
+            <td>{{requisition.position}}</td>
+            <td>{{requisition.costcenter}}</td>
+            <td>{{requisition.dtstart}}</td>
+            <td>{{requisition.dtend}}</td>
+            <td>{{requisition.qtdday}}</td>
+            <td>{{requisition.qtdsell}}</td>
+            <td>{{requisition.advancesalary}}</td>
+            <td>{{requisition.createby}}</td>
+            <td>{{requisition.createdate.strftime('%d/%m/%Y %H:%M:%S')}}</td>
+            <td>{{requisition.status}}</td>
+            <td><a href="#" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#Delete_Requisition_{{requisition.id}}"> Excluir</a></td>
+          </tr>
+                <!-- Modal -->
+            <div class="modal fade" id="Delete_Requisition_{{requisition.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Excluir requisição</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    Tem certeza de que deseja excluir esta requisição?
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <form method="POST" action="{{ url_for('excluir_requisition', RequestVacation_id=requisition.id) }}">
+                      <input type="hidden" name="requisition.id" value="{{ requisition.id }}">
+                    <button type="submit" class="btn btn-danger">Confirmar</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </tbody>
+      </table>
+
+
+
+
+
+{% endblock %}
+
+#{{ url_for('exportar_excel') }}
+#Margem (parte externa componente)
+#mt (Margem Top)
+#mb (Margem Botton, Margem de baixo)
+#ms (Margem Start, Margem esquerda)
+#me (Margem End, Margem Direita)
+
+#Padding (parte interna do conteiner)
