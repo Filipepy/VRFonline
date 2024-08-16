@@ -211,7 +211,7 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #fff;
+    color: #000000;
     text-align: center;
 }
 .dashboard-card h3 {
@@ -219,15 +219,15 @@ main {
 }
 
 .home-success{
-    background-color: #274C77;
+    background-color: #fff;
 }
 
 .home-Warning{
-    background-color: #274C77;
+    background-color: #fff;
 }
 
 .home-primary{
-    background-color: #274C77;
+    background-color: #fff;
 }
 
 .welcome-section {
