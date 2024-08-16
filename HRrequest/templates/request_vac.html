@@ -1,14 +1,14 @@
 {% extends 'base.html' %}
 
 {% block body%}
-<div class="container rounded contact-form p-5 mb-3">
+<div class="container rounded contact-form p-2 mb-3">
 
     <form action="#" method="post">
         <div class="container">
-            <h3>Formulário de solicitação de férias</h3>
+            <h3>VACATION REQUEST FORM</h3>
         </div>
 
-        <div class="row g-3">
+        <div class="row g-4">
             <div class="col-md-2">
                 <label for="ID" class="col-form-label">ID:</label>
                 <input type="text" name="txtID" class="form-control" value="{{ id_employee }}">
@@ -25,7 +25,7 @@
             </div>
 
             <div class="col-md-5">
-                <label for="CentrodeCusto" class="col-form-label">Centro de Custo:</label>
+                <label for="CentrodeCusto" class="col-form-label">Centro de custo:</label>
                 <input type="text" name="txtCentrodeCusto" class="form-control" value="{{ Centrodecusto }}">
             </div>
 
@@ -45,23 +45,23 @@
             </div>
 
             <div class="col-md-5">
-                <label for="13salario" class="col-form-label">Deseja antecipar a 1ª Parcela do 13º?</label>
+                <label for="13salario" class="col-form-label">Deseja antecipar a 1ª parcela do 13º?</label>
                 <select name="txtdecimoterceiro" class="form-control custom-select mt-1" value="{{ decimoterceiro }}">
-                    <option selected>Selecione sim ou Não</option>
+                    <option selected>Selecione sim ou não</option>
                     <option value="Sim">Sim</option>
                     <option value="Não">Não</option>
                 </select>
             </div>
 
             <div class="col-md-3">
-                <label for="Dataembarque" class="col-form-label">Data Embarque:</label>
+                <label for="Dataembarque" class="col-form-label">Data de embarque:</label>
                 <input type="date" name="txtDataemb" class="form-control" value="{{ dataemb }}">
             </div>
 
             <div class="col-md-12">
                 <select name="txttipocobertura" class="form-control custom-select mt-1" value="{{ cobertura }}">
-                    <option selected>Tipo de Cobertura</option>
-                    <option value="Feris na folga">Férias na folga</option>
+                    <option selected>Selecione o tipo de Cobertura</option>
+                    <option value="Ferias na folga">Férias na folga</option>
                     <option value="Cobertura interna">Cobertura interna</option>
                     <option value="cobertura pool">Cobertura pool</option>
                 </select>
@@ -98,7 +98,7 @@
             </div>
 
             <div class="col-md-12 text-right mt-5 mb-0">
-                <input type="submit" name="btnSubmit" class="btnContact" value="Enviar">
+                <input type="submit" name="btnSubmit" class="btn btn-primary" style="width: 120px;" value="Enviar">
             </div>
         </div>
     </form>
@@ -185,4 +185,3 @@
 </script>
 
 {% endblock %}
-
