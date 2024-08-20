@@ -24,7 +24,7 @@ def dashboard():
 @login_required
 def consult():
     requisitions = RequestVacation.query.all()
-    return render_template('consult.html', requisitions=requisitions)
+    return render_template('Consult.html', requisitions=requisitions)
 
 
 @app.route('/login', methods=['GET', 'POST'])
